@@ -1,34 +1,41 @@
 {
-  "status": "superseded",
-  "superseded_on": "2026-08-31",
-  "superseded_reason": "Deployment is bound to the earlier category-only source and is not valid proof for the current structured-judgment implementation.",
-  "replacement_status": "pending_current_source_redeployment",
+  "status": "current",
   "network": "studionet",
   "chain_id": 61999,
   "rpc": "https://studio.genlayer.com/api",
-  "owner_wallet_address": "0x02b49c0B84410c19910DEdC43C9bAB526644F897",
-  "contract_address": "0xC63a7A9f731354ad8bD8f8b8873E429037eeFbF5",
-  "deployment_transaction_hash": "0xbfe37b81ad64a1cce6ff09c99d6d2f1acf70873253edd973ea63ba8622248f35",
-  "intelligent_transaction_hash": "0x61f51a1b4dd49695faa1968c49f8f040e71c07deb5dff933414427f8e8a46ff6",
-  "verified_on": "2026-08-25",
+  "owner_wallet_address": "0xa6e2f12169f311c4439f83569f2cd36771390f9a",
+  "contract_address": "0x6f4fD29b79884BDBd1C84cD5CfD0a1B7999047ad",
+  "deployment_transaction_hash": "0xc26b0d0b3264b7558cc3b74ba994933466af15c9fce354e52883098754e7433f",
+  "intelligent_transaction_hash": "0xcf743baf985ee1d7fea50b3227018c596b492d1d55423f8ea3f1d906cc3a3a39",
+  "verified_on": "2026-08-31",
+  "links": {
+    "studio_import": "https://studio.genlayer.com/?import-contract=0x6f4fD29b79884BDBd1C84cD5CfD0a1B7999047ad",
+    "explorer_contract": "https://explorer-studio.genlayer.com/address/0x6f4fD29b79884BDBd1C84cD5CfD0a1B7999047ad",
+    "deployment_transaction": "https://explorer-studio.genlayer.com/tx/0xc26b0d0b3264b7558cc3b74ba994933466af15c9fce354e52883098754e7433f",
+    "intelligent_transaction": "https://explorer-studio.genlayer.com/tx/0xcf743baf985ee1d7fea50b3227018c596b492d1d55423f8ea3f1d906cc3a3a39"
+  },
   "verification": {
     "transaction_execution_succeeded": true,
-    "status_name": "FINALIZED",
-    "consensus_guard": "result_name absent or AGREE/MAJORITY_AGREE",
-    "execution_guard": "tx_execution_result_name absent or FINISHED_WITH_RETURN",
-    "state_read": "LATEST_FINAL",
-    "observed": "COMPATIBLE"
+    "deployment_status_name": "FINALIZED",
+    "intelligent_status_name": "FINALIZED",
+    "consensus_result": "MAJORITY_AGREE",
+    "state_read": "finalized",
+    "observed": {
+      "classification": "COMPATIBLE",
+      "consumer_impact_codes": "0",
+      "contract_change_mask": "0000",
+      "migration_note": "Additive change with optional field; no existing required fields removed or meanings altered."
+    }
   },
   "source": {
     "path": "contracts/api_break_check.py",
-    "sha256": "bd0342080186e6ca272d35f57d1d14b6cd2e720dd05d96bcf3d579acba5e0f72",
+    "sha256": "2c67ede5e97ae06b99b9d91d49a96df592c2155fd7633fb65df34accef9eceab",
     "genvm_runner": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6"
   },
   "wallet_policy": "owner-specific encrypted keystore outside the workspace; no secret committed",
   "tooling": {
     "genvm_linter": "0.11.0",
     "genlayer_test": "0.29.2",
-    "pyright": "1.1.411",
     "pytest": "9.1.1"
   }
 }
