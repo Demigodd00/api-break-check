@@ -1,9 +1,15 @@
-Contribution Date: 08/25/2026
+Contribution Date: 08/31/2026
 
 Title: API Break Check
 
+Submission status:
+HOLD — current-source StudioNet redeployment required before submission.
+
 Notes / Description:
-Built a reusable multi-consumer API migration ledger. It freezes endpoint contracts and real consumer usage, uses GenLayer validator consensus to label each endpoint COMPATIBLE, ADAPTATION, or BREAKING, permits one bounded revision, and requires every registered consumer to acknowledge the final assessments. All role checks, counters, and lifecycle gates are deterministic; no funds or migrations are executed.
+Built a reusable multi-consumer API migration ledger. Validator consensus binds per-consumer impact codes and a protocol-change mask; the contract derives the final compatibility category, permits one bounded revision, and requires every registered consumer to acknowledge the final assessments.
+
+Structured contract behavior:
+Validators bind one 0/1/2 impact code per ordered consumer plus a four-bit protocol-change mask. The contract stores both intermediate structures and derives COMPATIBLE, ADAPTATION, or BREAKING deterministically before the revision and acknowledgement stages.
 
 Evidence & Supporting:
 
@@ -13,14 +19,20 @@ https://github.com/Demigodd00/api-break-check
 GitHub File:
 https://github.com/Demigodd00/api-break-check/blob/main/contracts/api_break_check.py
 
+Current source SHA-256:
+2c67ede5e97ae06b99b9d91d49a96df592c2155fd7633fb65df34accef9eceab
+
 GenLayer Studio Contract:
-https://studio.genlayer.com/?import-contract=0xC63a7A9f731354ad8bD8f8b8873E429037eeFbF5
+PENDING — deploy the current main-branch source.
 
 GenLayer Explorer Contract:
-https://explorer-studio.genlayer.com/address/0xC63a7A9f731354ad8bD8f8b8873E429037eeFbF5
+PENDING — do not reuse the superseded deployment.
 
-Other — deployment transaction:
-https://explorer-studio.genlayer.com/tx/0xbfe37b81ad64a1cce6ff09c99d6d2f1acf70873253edd973ea63ba8622248f35
+Deployment transaction:
+PENDING
 
-Other — successful intelligent transaction:
-https://explorer-studio.genlayer.com/tx/0x61f51a1b4dd49695faa1968c49f8f040e71c07deb5dff933414427f8e8a46ff6
+Successful intelligent transaction:
+PENDING
+
+Legacy evidence notice:
+The previous deployment at 0xC63a7A9f731354ad8bD8f8b8873E429037eeFbF5 is bound to an older category-only source and is retained only as historical evidence. It must not be submitted as proof of the current implementation.

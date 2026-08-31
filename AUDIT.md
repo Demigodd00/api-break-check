@@ -1,14 +1,16 @@
-# Final Review Audit
+# Structured Judgment Update Audit
 
-Audit date: 2026-08-25
+Audit date: 2026-08-31
 
 Audited source: `contracts/api_break_check.py`
 
-Source SHA-256: `bd0342080186e6ca272d35f57d1d14b6cd2e720dd05d96bcf3d579acba5e0f72`
+Source SHA-256: `2c67ede5e97ae06b99b9d91d49a96df592c2155fd7633fb65df34accef9eceab`
 
 ## Outcome
 
-No open code, consensus, source-collection, secret, originality, test, or submission blocker was found in the final source.
+The category-only judgment identified in the prior review has been removed. Validators bind one 0/1/2 impact code per ordered consumer plus a four-bit protocol-change mask. The contract stores both intermediate structures and derives COMPATIBLE, ADAPTATION, or BREAKING deterministically before the revision and acknowledgement stages.
+
+The current source passed local and GitHub verification. It is not ready to submit with the previous StudioNet links: that deployment is bound to the superseded source and must be replaced by a deployment of the current hash.
 
 ## Verification matrix
 
@@ -16,42 +18,26 @@ No open code, consensus, source-collection, secret, originality, test, or submis
 | --- | --- |
 | Concrete GenVM runner pin | Pass |
 | `genvm-lint check` | Pass |
-| `genvm-lint typecheck` | Pass |
+| `genvm-lint typecheck` | Pass in GitHub CI |
 | Hardened direct tests | Pass — 3 tests |
-| Leader plus independent-validator replay | Pass |
+| Independent validator replay over intermediate results | Pass |
 | Five-validator GLSim integration | Pass |
-| Final-source StudioNet deployment and intelligent write | Pass |
-| Final state read via `LATEST_FINAL` | Pass |
-| Nondeterministic callback storage-read audit | Pass — 0 findings |
-| Action workflow syntax (`actionlint`) | Pass |
-| Pinned Python dependencies and `pip check` | Pass |
-| Source-policy and prompt-injection boundary | Pass |
-| Wallet/private-key/generic secret scan | Pass |
-| Exact contract hash across workspace | Pass — no duplicate |
-| Workspace originality comparison | Pass — highest non-target score 0.3923 |
+| Deterministic final-outcome derivation | Pass |
+| Structured intermediate result stored on-chain | Pass |
+| Meaningful reusable lifecycle after judgment | Pass |
+| Current-source StudioNet deployment and intelligent write | Pending redeployment |
+| Previous deployment | Superseded; do not submit as current proof |
 | Fund custody and cross-contract calls | None |
 
-## Review findings addressed
+## Rejection issue addressed
 
-- The final contract is a substantive workflow with contract-specific roles, records, lifecycle, challenges or human confirmation; it is not an earlier contract with a renamed class.
-- Validator callbacks consume captured plain evidence rather than reading GenVM storage inside nondeterministic execution.
-- Strict structured output and independent replay prevent free-form text from becoming unchecked state.
-- Source collection is explicit: The authoritative material is the stored old/new endpoint text, migration policy, and consumer usage. No live documentation site is fetched, so a reviewer can replay the exact packet that validators saw.
-- All live tests use a new owner-specific wallet set outside the workspace; no wallet was reused from Stephen or any other owner.
+The model no longer returns a final category for one equality check. Consensus binds independently replayed intermediate findings, the contract derives the final outcome by explicit rules, and that outcome controls later contract-specific state transitions.
 
-## StudioNet evidence
+## Required before submission
 
-- Contract: https://explorer-studio.genlayer.com/address/0xC63a7A9f731354ad8bD8f8b8873E429037eeFbF5
-- Deployment: https://explorer-studio.genlayer.com/tx/0xbfe37b81ad64a1cce6ff09c99d6d2f1acf70873253edd973ea63ba8622248f35
-- Intelligent write: https://explorer-studio.genlayer.com/tx/0x61f51a1b4dd49695faa1968c49f8f040e71c07deb5dff933414427f8e8a46ff6
-- Observed: `"COMPATIBLE"`
+1. Deploy the current `contracts/api_break_check.py` source.
+2. Execute and finalize a representative intelligent write.
+3. Record the new contract address, transaction hashes, observed intermediate fields, and source hash.
+4. Replace the pending fields in `SUBMISSION.md`, `README.md`, and `deployments/studionet.json`.
 
-The smoke test asserted successful execution and `FINALIZED` status, accepted only agreement outcomes exposed by the current receipt schema, and read the committed state using `LATEST_FINAL`.
-
-## Residual product limits
-
-- It does not execute a migration or prove runtime compatibility.
-- Consumer profiles are self-declared and may be incomplete.
-- An unresponsive registered consumer can prevent finalization; applications should enroll only active participants.
-
-These are disclosed operating boundaries, not hidden test failures. Hosted GitHub Actions is checked after publication; local workflow syntax and every underlying command were verified before the clean root commit.
+Legacy deployment address: `0xC63a7A9f731354ad8bD8f8b8873E429037eeFbF5`.

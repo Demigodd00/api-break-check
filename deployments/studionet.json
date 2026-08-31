@@ -1,4 +1,8 @@
 {
+  "status": "superseded",
+  "superseded_on": "2026-08-31",
+  "superseded_reason": "Deployment is bound to the earlier category-only source and is not valid proof for the current structured-judgment implementation.",
+  "replacement_status": "pending_current_source_redeployment",
   "network": "studionet",
   "chain_id": 61999,
   "rpc": "https://studio.genlayer.com/api",
