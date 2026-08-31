@@ -11,7 +11,7 @@ PROMPT = "Review one API endpoint migration"
 
 
 def context():
-    validators = get_validator_factory().batch_create_mock_validators(5, mock_llm_response={"nondet_exec_prompt": {PROMPT: json.dumps({"classification": "COMPATIBLE", "migration_note": "Existing required fields and meanings remain unchanged for the registered client."})}})
+    validators = get_validator_factory().batch_create_mock_validators(5, mock_llm_response={"nondet_exec_prompt": {PROMPT: json.dumps({"consumer_impact_codes": "0", "contract_change_mask": "0000", "migration_note": "Existing required fields and meanings remain unchanged for the registered client."})}})
     return {"validators": [validator.to_dict() for validator in validators]}
 
 

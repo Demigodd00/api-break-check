@@ -4,7 +4,7 @@ Reviews each proposed API endpoint change against frozen interface text and the 
 
 ## Why it is an Intelligent Contract
 
-Classify an endpoint as COMPATIBLE, ADAPTATION, or BREAKING and produce a bounded migration note. Validators must independently agree on the category; wording is advisory. GenLayer's validator consensus turns that semantic judgment into shared contract state. Enrollment, authorization, the one-revision limit, acknowledgement counting, and completion are ordinary deterministic state transitions.
+Validators independently produce one impact code for every registered consumer and a four-part protocol-change mask. The contract stores those intermediate findings and deterministically derives COMPATIBLE, ADAPTATION, or BREAKING from the complete consumer-impact vector. The result then drives a reusable revision and acknowledgement lifecycle rather than ending at a stored label.
 
 ## Reusable deployment model
 
@@ -27,6 +27,7 @@ The authoritative material is the stored old/new endpoint text, migration policy
 ## Core invariants
 
 - Endpoint definitions cannot change after consumer enrollment begins.
+- Every assessment binds one impact per registered consumer plus the protocol-change mask; the model never supplies the final category.
 - Only a non-compatible assessed endpoint can use its single revision.
 - Completion requires every consumer to acknowledge every final endpoint assessment.
 
@@ -53,13 +54,15 @@ gltest tests/integration/test_glsim_consensus.py --network localnet -q
 
 The StudioNet smoke test is opt-in and requires three disposable owner-specific test accounts. It reads state using `LATEST_FINAL` and asserts successful finalized execution.
 
-## Final StudioNet proof
+## Previous StudioNet deployment (superseded)
+
+These links and the recorded source hash refer to the earlier category-only implementation. Redeploy the structured-impact version and replace this section before submission.
 
 - Contract: https://explorer-studio.genlayer.com/address/0xC63a7A9f731354ad8bD8f8b8873E429037eeFbF5
 - Studio import: https://studio.genlayer.com/?import-contract=0xC63a7A9f731354ad8bD8f8b8873E429037eeFbF5
 - Deployment transaction: https://explorer-studio.genlayer.com/tx/0xbfe37b81ad64a1cce6ff09c99d6d2f1acf70873253edd973ea63ba8622248f35
 - Intelligent transaction: https://explorer-studio.genlayer.com/tx/0x61f51a1b4dd49695faa1968c49f8f040e71c07deb5dff933414427f8e8a46ff6
-- Observed final-state sample: `"COMPATIBLE"`
+- Observed legacy final-state sample: `"COMPATIBLE"`
 - Audited source SHA-256: `bd0342080186e6ca272d35f57d1d14b6cd2e720dd05d96bcf3d579acba5e0f72`
 
 ## Limitations
