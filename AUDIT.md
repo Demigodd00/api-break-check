@@ -8,9 +8,9 @@ Source SHA-256: `2c67ede5e97ae06b99b9d91d49a96df592c2155fd7633fb65df34accef9ecea
 
 ## Outcome
 
-The category-only judgment identified in the prior review has been removed. Validators bind one 0/1/2 impact code per ordered consumer plus a four-bit protocol-change mask. The contract stores both intermediate structures and derives COMPATIBLE, ADAPTATION, or BREAKING deterministically before the revision and acknowledgement stages.
+The prior category-only judgment has been removed. Validators independently replay and bind a per-consumer 0/1/2 impact vector plus a four-bit protocol-change mask. The final compatibility category is deterministic contract logic, and it controls revision and acknowledgement stages.
 
-The current source passed local and GitHub verification. It is not ready to submit with the previous StudioNet links: that deployment is bound to the superseded source and must be replaced by a deployment of the current hash.
+The current source passed GenVM lint and hardened direct tests and is deployed on StudioNet with a finalized representative intelligent write.
 
 ## Verification matrix
 
@@ -18,26 +18,23 @@ The current source passed local and GitHub verification. It is not ready to subm
 | --- | --- |
 | Concrete GenVM runner pin | Pass |
 | `genvm-lint check` | Pass |
-| `genvm-lint typecheck` | Pass in GitHub CI |
 | Hardened direct tests | Pass — 3 tests |
 | Independent validator replay over intermediate results | Pass |
-| Five-validator GLSim integration | Pass |
 | Deterministic final-outcome derivation | Pass |
 | Structured intermediate result stored on-chain | Pass |
 | Meaningful reusable lifecycle after judgment | Pass |
-| Current-source StudioNet deployment and intelligent write | Pending redeployment |
-| Previous deployment | Superseded; do not submit as current proof |
+| Current-source StudioNet deployment | Pass — FINALIZED |
+| Current-source intelligent write | Pass — FINALIZED, successful execution |
 | Fund custody and cross-contract calls | None |
 
 ## Rejection issue addressed
 
-The model no longer returns a final category for one equality check. Consensus binds independently replayed intermediate findings, the contract derives the final outcome by explicit rules, and that outcome controls later contract-specific state transitions.
+The model no longer returns one final category for a single equality check. Consensus binds independently replayed intermediate findings, deterministic contract logic derives the final outcome, and that outcome controls contract-specific downstream state transitions.
 
-## Required before submission
+## Current evidence
 
-1. Deploy the current `contracts/api_break_check.py` source.
-2. Execute and finalize a representative intelligent write.
-3. Record the new contract address, transaction hashes, observed intermediate fields, and source hash.
-4. Replace the pending fields in `SUBMISSION.md`, `README.md`, and `deployments/studionet.json`.
-
-Legacy deployment address: `0xC63a7A9f731354ad8bD8f8b8873E429037eeFbF5`.
+- Contract: https://explorer-studio.genlayer.com/address/0x6f4fD29b79884BDBd1C84cD5CfD0a1B7999047ad
+- Studio import: https://studio.genlayer.com/?import-contract=0x6f4fD29b79884BDBd1C84cD5CfD0a1B7999047ad
+- Deployment transaction: https://explorer-studio.genlayer.com/tx/0xc26b0d0b3264b7558cc3b74ba994933466af15c9fce354e52883098754e7433f
+- Intelligent transaction: https://explorer-studio.genlayer.com/tx/0xcf743baf985ee1d7fea50b3227018c596b492d1d55423f8ea3f1d906cc3a3a39
+- Observed state: `consumer_impact_codes="0"`, `contract_change_mask="0000"`, derived `classification="COMPATIBLE"`
