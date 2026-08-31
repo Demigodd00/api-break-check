@@ -26,13 +26,13 @@ Before consensus, the contract normalizes bounded text, reads all required stora
 
 ## Consensus boundary
 
-Classify an endpoint as COMPATIBLE, ADAPTATION, or BREAKING and produce a bounded migration note. Validators must independently agree on the category; wording is advisory.
+For each endpoint, validators independently bind two structured results: one `0/1/2` impact code per ordered consumer and a four-bit protocol-change mask. The validator must reproduce both complete vectors; migration-note wording remains advisory.
 
-The leader callback validates JSON shape, field types, closed categories, masks, and length bounds. A validator reruns the same semantic operation and rejects disagreement. Where an explanatory label can vary harmlessly, consensus binds the stable decision field while still checking that the leader's advisory text is well formed.
+The leader callback validates vector lengths, the closed code alphabet, the mask, and note bounds. A validator reruns the same semantic operation and rejects disagreement in any independently bound component. The contract—not the model—derives BREAKING when any consumer has code `2`, ADAPTATION when none has `2` but at least one has `1`, and COMPATIBLE otherwise.
 
 ## Deterministic boundary
 
-Enrollment, authorization, the one-revision limit, acknowledgement counting, and completion are ordinary deterministic state transitions.
+Category derivation, enrollment, authorization, the one-revision loop, acknowledgement counting, and completion are ordinary deterministic state transitions.
 
 Important invariants:
 
